@@ -18,7 +18,7 @@ class FluentSheet extends StatefulWidget {
   final Widget? headerTitle;
   final Widget? headerTrailing;
   final Widget child;
-  final Widget Function(BuildContext int, double size)? overlayBuilder;
+  final Widget Function(BuildContext context, double size)? overlayBuilder;
 
   const FluentSheet.bottom({
     super.key,
