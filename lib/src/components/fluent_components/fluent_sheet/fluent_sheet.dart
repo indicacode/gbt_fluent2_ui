@@ -153,6 +153,7 @@ class _FluentSheetState extends State<FluentSheet> {
                             children: [
                               Positioned.fill(
                                 child: SingleChildScrollView(
+                                  physics: ClampingScrollPhysics(),
                                   controller: scrollController,
                                   child: Column(
                                     children: [
