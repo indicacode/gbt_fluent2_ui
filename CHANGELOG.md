@@ -1,3 +1,9 @@
+## 8.x.x
+
+- [BREAKING CHANGE] Set FluentSheet scroll physics to ClampingScrollPhysics
+- Change sdk constraints to ^3.8.0
+- Change flutter constraints to ^3.32.0
+
 ## 7.0.0
 
 - [BREAKING CHANGE] Remove deprecated code
