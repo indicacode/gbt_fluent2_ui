@@ -8,6 +8,8 @@ class FluentListItemOneLine extends StatelessWidget {
   final String text;
   final void Function()? onTap;
   final Color? textColor;
+  final int? maxLines;
+  final TextOverflow? textOverflow;
 
   /// FluentList's constructor
   const FluentListItemOneLine({
@@ -15,6 +17,8 @@ class FluentListItemOneLine extends StatelessWidget {
     super.key,
     this.onTap,
     this.leading,
+    this.maxLines,
+    this.textOverflow,
     this.trailing,
     this.textColor,
     this.leadingBoxSize = 24,
@@ -60,6 +64,8 @@ class FluentListItemOneLine extends StatelessWidget {
               child: FluentContainer(
                 child: FluentText(
                   text,
+                  maxLines: maxLines,
+                  textOverflow: textOverflow,
                   style: FluentThemeDataModel.of(context)
                       .fluentTextTheme
                       ?.body1

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:gbt_fluent2_ui/gbt_fluent2_ui.dart';
 
 class FluentListItemMultiLine extends StatelessWidget {
+  final TextOverflow? textTextOverflow;
+  final int? textMaxLines;
   final Widget? leading;
   final double? leadingBoxSize;
   final Widget? trailing;
@@ -17,6 +19,8 @@ class FluentListItemMultiLine extends StatelessWidget {
   const FluentListItemMultiLine({
     super.key,
     this.leading,
+    this.textMaxLines,
+    this.textTextOverflow,
     this.trailingHeight = 40,
     this.trailing,
     this.tileColor,
@@ -48,7 +52,10 @@ class FluentListItemMultiLine extends StatelessWidget {
       visualDensity: VisualDensity(horizontal: 0, vertical: -4),
       title: Row(
         mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: additionalContent != null? CrossAxisAlignment.center : CrossAxisAlignment.start,
+        crossAxisAlignment:
+            additionalContent != null
+                ? CrossAxisAlignment.center
+                : CrossAxisAlignment.start,
         children: [
           if (leading != null) ...[
             FluentContainer(
@@ -56,9 +63,7 @@ class FluentListItemMultiLine extends StatelessWidget {
               height: leadingBoxSize,
               child: leading,
             ),
-            SizedBox(
-              width: FluentSize.size160.value,
-            ),
+            SizedBox(width: FluentSize.size160.value),
           ],
           Expanded(
             child: Column(
@@ -67,15 +72,16 @@ class FluentListItemMultiLine extends StatelessWidget {
                 if (text != null)
                   FluentText(
                     text,
-                    style: FluentThemeDataModel.of(context)
-                        .fluentTextTheme
-                        ?.body1
-                        ?.fluentCopyWith(
-                          fluentColor: colorMode(
-                            FluentColors.neutralForeground1Rest,
-                            FluentDarkColors.neutralForeground1Rest,
-                          ),
-                        ),
+                    maxLines: textMaxLines,
+                    textOverflow: textTextOverflow,
+                    style: FluentThemeDataModel.of(
+                      context,
+                    ).fluentTextTheme?.body1?.fluentCopyWith(
+                      fluentColor: colorMode(
+                        FluentColors.neutralForeground1Rest,
+                        FluentDarkColors.neutralForeground1Rest,
+                      ),
+                    ),
                   ),
                 if (subtext != null)
                   Padding(
@@ -83,29 +89,23 @@ class FluentListItemMultiLine extends StatelessWidget {
                     child: FluentText(
                       subtext,
                       textOverflow: TextOverflow.ellipsis,
-                      style: FluentThemeDataModel.of(context)
-                          .fluentTextTheme
-                          ?.caption1
-                          ?.fluentCopyWith(
-                            fluentColor: colorMode(
-                              FluentColors.neutralForeground2Rest,
-                              FluentDarkColors.neutralForeground2Rest,
-                            ),
-                          ),
+                      style: FluentThemeDataModel.of(
+                        context,
+                      ).fluentTextTheme?.caption1?.fluentCopyWith(
+                        fluentColor: colorMode(
+                          FluentColors.neutralForeground2Rest,
+                          FluentDarkColors.neutralForeground2Rest,
+                        ),
+                      ),
                     ),
                   ),
-                if (additionalContent != null) additionalContent
+                if (additionalContent != null) additionalContent,
               ],
             ),
           ),
           if (trailing != null) ...[
-            SizedBox(
-              width: FluentSize.size80.value,
-            ),
-            FluentContainer(
-              height: trailingHeight,
-              child: trailing,
-            ),
+            SizedBox(width: FluentSize.size80.value),
+            FluentContainer(height: trailingHeight, child: trailing),
           ],
         ],
       ),
